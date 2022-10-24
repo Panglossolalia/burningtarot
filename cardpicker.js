@@ -553,7 +553,7 @@ const tarot = [
 const phases = ["The starting point",
 	"Next steps",
 	"Hurdle",
-	"What to ‘call in’",
+	"What to 'call in'",
 	"Potential outcome"];
 
 /**
@@ -574,13 +574,10 @@ function deal() {
 	console.log("...");
 	//const phases = [1,2,3,4,5];
 	for(const i of phases.keys()) {
-		console.log("in loop");
-		//console.log(i);
 		const pn = `phase_${i}`;
-		console.log(pn);
 		const div_phase = document.getElementById(pn);
-		div_phase.innerHTML = `${tarot[i].description}<br><img src="${tarot[i].image}">`;
-
+		//div_phase.innerHTML = `${tarot[i].description}<br><img src="${tarot[i].image}">`;
+		div_phase.innerHTML = `<img style="width:50%" src="${tarot[i].image}"><br><b>Description:</b>TBD<br><b>In context:</b>TBD<br>`;
 		const h2_phase = document.getElementById(`ph_${i}`);
 		h2_phase.innerHTML = `${phases[i]}: ${tarot[i].name}`
 	};
