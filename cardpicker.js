@@ -1,7 +1,7 @@
 console.log("hi")
 
 // This is a placeholder taken from https://gist.githubusercontent.com/ajzeigert/32461d73c17cfd8fd475c0049db451f5/raw/51b7af34b5ad50207dc9b59b583f14fa20b2e446/tarot.json; replace
-const tarot = [
+const full_tarot = [
 	{
 		"name": "The Fool",
 		"suite": "major",
@@ -550,6 +550,52 @@ const tarot = [
 	}*/
 ]
 
+const placeholder_tarot = [
+	{
+		"name": "Strength",
+		"suite": "major",
+		"image": "img/8 - Strength.png",
+		"in_context": ["Let the fire of self-awareness and inner strength burn bright in your heart and belly. Paint the sky with your vision! Don’t be afraid to take the steps that your intuition whispers to you.. these are the steps will lead you closer to your self-love and freedom.",
+					   "TBD_2","TBD_3","TBD_4","TBD_5"],
+		"description": "This is a card of strength and mastery through knowing yourself. Include the gentle voice of intuition to feel empowered and strong.",
+		"interpretation": "Power, energy, action, courage, magnanimity; also complete success and honours. Reversed: Despotism, abuse if power, weakness, discord, sometimes even disgrace."
+	},
+	{
+		"name": "Emperor",
+		"suite": "major",
+		"image": "img/4 - The Emperor.jpeg",
+		"in_context": ["TBD_1"," It’s time to make plans. Get thinking around practical next steps. Who is with you on this path? Who’s not on the same page as you? Where can you practice your healthy boundaries?",
+					   "TBD_3","TBD_4","TBD_5"],
+		"description": "The Emperor stands strong. He is the embodied masculine, the archetypal father-figure. Organised and boundaried.",
+		"interpretation": "Stability, power, protection, realization; a great person; aid, reason, conviction; also authority and will. Reversed: Benevolence, compassion, credit; also confusion to enemies, obstruction, immaturity."
+	},
+	{
+		"name": "Justice",
+		"suite": "major",
+		"image": "img/11 - Justice.jpeg",
+		"in_context": ["TBD_1","TBD_2","Where do you feel this path is unfair? Is there a contract that needs a second look? Or perhaps an inner reflection on your moral standpoint? Take a moment to breathe, pause and reflect on what it is that needs rebalancing.",
+		               "TBD_4","TBD_5"],
+		"description": "Balance. Contracts. Fairness. Ethical codes explored. Justice reminds us to connect to the contract with ourselves and others.",
+		"interpretation": "Equity, rightness, probity, executive; triumph of the deserving side in law. Reversed: Law in all its departments, legal complications, bigotry, bias, excessive severity."
+	},
+	{
+		"name": "Tower",
+		"suite": "major",
+		"image": "img/16 - The Tower.png",
+		"in_context": ["TBD_1","TBD_2","TBD_3","The Tower may look strong but it’s made from flimsy paper and needs to be burned. Outdated patterns of behaviour that no longer serve you are ready to be sent skyward. You might not feel ready but life is pushing you to make this change – and it’s a change for the better. Let go and feel the feels. Get ready with your lighter - this paper tower needs to go up in flames.",
+		               "TBD_5"],
+		"description": "The Tower that needs to come down. Outdated survival strategies that no longer serve you are being challenged. You’re feeling rocked to the core, but this change is good for you.",
+		"interpretation": "Misery, distress, indigence, adversity, calamity, disgrace, deception, ruin. It is a card in particular of unforeseen catastrophe. Reversed: According to one account, the same in a lesser degree also oppression, imprisonment, tyranny."
+	},
+	{
+		"name": "High Priestess",
+		"suite": "major",
+		"image": "img/2 - The High Priestess.jpeg",
+		"in_context": ["TBD_1","TBD_2","TBD_3","TBD_4","Open yourself to creativity and flow. Allow the divine feminine to be experienced and not sought. Feel it tingle in your fingertips and energise your creativity. Be at one with the fullness of your potential, without knowing where it will go. Trust and enjoy."],
+		"description": "The divine feminine, gateway to the secrets of the web of life. She holds knowledge that she cannot see.",
+		"interpretation": "Secrets, mystery, the future as yet unrevealed; the woman who interests the Querent, if male; the Querent herself, if female; silence, tenacity; mystery, wisdom, science. Reversed: Passion, moral or physical ardour, conceit, surface knowledge."
+	}]
+
 const phases = ["The starting point",
 	"Next steps",
 	"Hurdle",
@@ -568,8 +614,9 @@ const phases = ["The starting point",
     return a;
 }
 
-function deal() {
-	shuffle(tarot)
+function deal(tarot,do_shuffle) {
+	//const tarot = placeholder_tarot;
+	if(do_shuffle) {shuffle(tarot);}
 	console.log(JSON.stringify(tarot[0]))
 	console.log("...");
 	//const phases = [1,2,3,4,5];
@@ -577,7 +624,8 @@ function deal() {
 		const pn = `phase_${i}`;
 		const div_phase = document.getElementById(pn);
 		//div_phase.innerHTML = `${tarot[i].description}<br><img src="${tarot[i].image}">`;
-		div_phase.innerHTML = `<img style="width:50%" src="${tarot[i].image}"><br><b>Description:</b>TBD<br><b>In context:</b>TBD<br>`;
+		const in_context = tarot[i].in_context[i];
+		div_phase.innerHTML = `<img style="width:50%" src="${tarot[i].image}"><p><b>Description:</b> ${tarot[i].description}<p><b>In context:</b> ${in_context}<br>`;
 		const h2_phase = document.getElementById(`ph_${i}`);
 		h2_phase.innerHTML = `${phases[i]}: ${tarot[i].name}`
 	};
